@@ -7,7 +7,7 @@ import os
 
 def check_directory():
     userpath = os.path.expanduser('~')
-    dirpath = "{UP}/.boilermagic".format(UP=userpath)
+    dirpath = "{UP}/.bpmagic".format(UP=userpath)
     if not os.path.isdir(dirpath):
         os.mkdir(dirpath)
 
@@ -15,7 +15,7 @@ def check_directory():
 
 
 @magics_class
-class BoilerMagic(Magics):
+class BPMagic(Magics):
 
     # function to load one or more modules into an ipython cell
     @magic_arguments()
@@ -28,12 +28,12 @@ class BoilerMagic(Magics):
             ValueError('No arguments passed to %iload')
         linelist = []
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
         for arg in args:
             filepath = "{DP}/{PROF}.py".format(PROF=arg, DP=dirpath)
             if not os.path.isfile(filepath):
                 raise ValueError(
-                    'No boilermagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
+                    'No bpmagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
             file = open(filepath, 'r')
             lines = file.read()
             lines = '#' + arg + '\n' + lines
@@ -49,7 +49,7 @@ class BoilerMagic(Magics):
     @line_magic
     def iloadall(self, arg):
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
         names = os.listdir(dirpath)
 
         if len(names) == 0:
@@ -81,7 +81,7 @@ class BoilerMagic(Magics):
         # TODO: Check charstring of filename to see if it can be written
         overwrite = args.overwrite
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
         filepath = "{DP}/{PROF}.py".format(PROF=profile, DP=dirpath)
 
         if overwrite is not True:
@@ -98,7 +98,7 @@ class BoilerMagic(Magics):
     def ilist(self, line):
 
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
 
         names = os.listdir(dirpath)
         names = [x[:-3] for x in names]
@@ -117,11 +117,11 @@ class BoilerMagic(Magics):
         if len(args) == 0:
             ValueError('No arguments passed to %idelete')
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
         filepath = "{DP}/{PROF}.py".format(PROF=arg, DP=dirpath)
         if not os.path.isfile(filepath):
             raise ValueError(
-                'No boilermagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
+                'No bpmagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
         else:
             os.remove(filepath)
             print 'Profile {PROF} has been deleted'.format(PROF=arg)
@@ -138,14 +138,14 @@ class BoilerMagic(Magics):
         check_directory()
         args = parse_argstring(self.irename, line)
         userpath = os.path.expanduser('~')
-        dirpath = "{UP}/.boilermagic".format(UP=userpath)
+        dirpath = "{UP}/.bpmagic".format(UP=userpath)
         oldprofile = args.oldprofile[0][0]
         newprofile = args.newprofile[0][0]
 
         oldfilepath = "{DP}/{PROF}.py".format(PROF=oldprofile, DP=dirpath)
         if not os.path.isfile(oldfilepath):
             raise ValueError(
-                'No boilermagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
+                'No bpmagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
 
         # TODO: Check charstring of filename to see if it can be written
         overwrite = args.overwrite
@@ -161,7 +161,7 @@ class BoilerMagic(Magics):
 
 ip = get_ipython()
 
-ip.register_magics(BoilerMagic)
+ip.register_magics(BPMagic)
 
 # In order to actually use these magics, you must register them with a
 # running IPython.  This code must be placed in a file that is loaded once
@@ -172,4 +172,4 @@ ip.register_magics(BoilerMagic)
 
 def load_ipython_extension(ip):
     """Load the extension in IPython."""
-    ip.register_magics(BoilerMagic)
+    ip.register_magics(BPMagic)
