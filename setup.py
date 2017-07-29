@@ -7,7 +7,7 @@ def readme():
 
 major = 0
 minor = 1
-patch = 0
+patch = 1
 version = '.'.join([str(v) for v in [major, minor, patch]])
 
 
@@ -15,7 +15,7 @@ setup(name='boilermagic',
       version=version,
       description='Magic functions to load boilerplate code',
       url='https://github.com/pm8k/boilermagic',
-      download_url = 'https://github.com/pm8k/boilermagic/archive/0.1.tar.gz', # I'll explain this in a second
+      download_url = 'https://github.com/pm8k/boilermagic/archive/0.11.tar.gz', # I'll explain this in a second
 
       long_description=readme(),
       author='Matthew Russell',
