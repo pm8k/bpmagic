@@ -159,11 +159,17 @@ class BoilerMagic(Magics):
         os.rename(oldfilepath, newfilepath)
 
 
+ip = get_ipython()
+
+ip.register_magics(BoilerMagic)
+
 # In order to actually use these magics, you must register them with a
 # running IPython.  This code must be placed in a file that is loaded once
 # IPython is up and running:
 # You can register the class itself without instantiating it.  IPython will
 # call the default constructor on it.
+
+
 def load_ipython_extension(ip):
     """Load the extension in IPython."""
     ip.register_magics(BoilerMagic)
