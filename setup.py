@@ -23,7 +23,7 @@ setup(name='boilermagic',
       license='MIT',
       keywords=['python', 'magic', 'jupyter', 'ipython', 'boiler', 'plate'],
 
-      packages=['boilermagic'],
+      py_modules=['boilermagic'],
         install_requires=[
           'ipython'
       ],
