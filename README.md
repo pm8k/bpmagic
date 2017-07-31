@@ -2,6 +2,17 @@
 
 bpmagic is a library to save and load boilerplate code. With a few simple commands, you can save and load bits of frequently used code to speed up programming in iPython and Jupyter.
 
+## Install
+bpmagic is up on pip, so you can simply call:
+`pip install bpmagic`
+
+## Loading bpmagic
+To load the bpmagic namespaces, you can use the load_ext magic function:
+`%load_ext bpmagic`
+To prevent typing this everytime, you can add this to your ipython profile startup (mine is in `/.ipython/profile_default/startup/`) and place the above command into a `*.ipy` file (you can name it whatever you want, I used `bpmagic.ipy`)
+
+
+
 ## Save
 
 Using the `%%isave` magic function, you can write and save a chunk of code into a new bpmagic namespace. For example:
