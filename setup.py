@@ -8,7 +8,7 @@ def readme():
 
 major = 0
 minor = 13
-patch = 0
+patch = 1
 version = '.'.join([str(v) for v in [major, minor, patch]])
 download_url = 'https://github.com/pm8k/bpmagic/archive/{V}.tar.gz'.format(
     V=version)

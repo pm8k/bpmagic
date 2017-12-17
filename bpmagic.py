@@ -1,9 +1,10 @@
+from __future__ import print_function
+
 from IPython.core.magic import (Magics, magics_class, line_magic,
                                 cell_magic)
 from IPython.core.magic_arguments import (argument, magic_arguments,
                                           parse_argstring)
 import os
-from __future__ import print_function
 
 def check_directory():
     userpath = os.path.expanduser('~')
