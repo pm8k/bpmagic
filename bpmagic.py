@@ -3,7 +3,7 @@ from IPython.core.magic import (Magics, magics_class, line_magic,
 from IPython.core.magic_arguments import (argument, magic_arguments,
                                           parse_argstring)
 import os
-
+from __future__ import print_function
 
 def check_directory():
     userpath = os.path.expanduser('~')
@@ -86,7 +86,6 @@ class BPMagic(Magics):
 
         if overwrite is not True:
             if os.path.isfile(filepath):
-                print 'here'
                 raise ValueError(
                     'Already Exists, use -o or --overwrite to overwrite file')
         file = open(filepath, "w")
@@ -103,7 +102,7 @@ class BPMagic(Magics):
         names = os.listdir(dirpath)
         names = [x[:-3] for x in names]
         for n in names:
-            print n
+            print(n)
 
     # TODO: See if you can add run functionality to iload
 
@@ -124,7 +123,7 @@ class BPMagic(Magics):
                 'No bpmagic file named {PROF}. Use %ilist to list all profiles.'.format(PROF=arg))
         else:
             os.remove(filepath)
-            print 'Profile {PROF} has been deleted'.format(PROF=arg)
+            print('Profile {PROF} has been deleted'.format(PROF=arg))
 
     # rename profile from one name to another
     @magic_arguments()
@@ -153,7 +152,6 @@ class BPMagic(Magics):
 
         if overwrite is not True:
             if os.path.isfile(newfilepath):
-                print 'here'
                 raise ValueError(
                     'Already Exists, use -o or --overwrite to overwrite file')
         os.rename(oldfilepath, newfilepath)
