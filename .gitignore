@@ -2,4 +2,5 @@
 .eggs
 .pypirc
 dist
+build
 .DS_Store
